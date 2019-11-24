@@ -1,0 +1,49 @@
+<?php
+/**
+ * @var \Amicode\Weather\Block\Weather $block
+ */
+$weather = $block->getCurrentWeather();
+$helper = $this->helper('Amicode\Weather\Helper\Data');
+$imageName = $helper->getImage($weather->getWeatherIcon());
+
+if ($weather->getId() && $helper->isModuleEnable()):
+    echo "<div class='widget block block-static-block'>";
+    echo "<h2>Weather in " . $weather->getName() . "</h2>";
+    ?>
+    <table>
+        <tr>
+            <th><?php if($imageName): ?><?php echo '<img src="' . $helper->getMediaUrl() . 'weatherfeed/icons/' . $imageName . '" border="0">';?><?php endif; ?></th>
+            <th><?php echo $weather->getTempMin();?> °C</th>
+        </tr>
+        <tr>
+            <td>Temp</td>
+            <td>Min: <?php echo $weather->getTempMin();?> °C<br />
+                Max: <?php echo $weather->getTemp();?> °C</td>
+        </tr>
+        <tr>
+            <td>Wind speed</td>
+            <td><?php echo $weather->getWindSpeed();?> [m/s]</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><?php echo $weather->getWeatherDescription();?></td>
+        </tr>
+        <tr>
+            <td>Cloudiness</td>
+            <td><?php echo $weather->getClouds();?> %</td>
+        </tr>
+        <tr>
+            <td>Pressure</td>
+            <td><?php echo $weather->getPressure();?> hPa</td>
+        </tr>
+        <tr>
+            <td>Sunrise</td>
+            <td><?php echo date('h:i:s', strtotime($weather->getSunrise()));?></td>
+        </tr>
+        <tr>
+            <td>Sunset</td>
+            <td><?php echo date('h:i:s', strtotime($weather->getSunset()));?></td>
+        </tr>
+    </table>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © 2019 AmiCode. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="amicodeweather" frontName="amicodeweather">
+            <module before="Magento_Backend" name="Amicode_Weather"/>
+        </route>
+    </router>
+</config>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2019 AmiCode. All rights reserved.
+  -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">amicodeweather_weather_form.amicodeweather_weather_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Wether Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Amicode\Weather\Block\Adminhtml\Weather\Edit\SaveButton"/>
+            <button name="delete" class="Amicode\Weather\Block\Adminhtml\Weather\Edit\DeleteButton"/>
+            <button name="back" class="Amicode\Weather\Block\Adminhtml\Weather\Edit\BackButton"/>
+        </buttons>
+        <namespace>amicodeweather_weather_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>amicodeweather_weather_form.amicodeweather_weather_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="amicodeweather_weather_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="amicodeweather/weather/save"/>
+        </settings>
+        <dataProvider class="Amicode\Weather\Model\Weather\DataProvider" name="amicodeweather_weather_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>entity_id</dataScope>
+            </settings>
+        </field>
+        <field name="weather_icon" sortOrder="1" formElement="input" component="Amicode_Weather/js/form/element/image">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>Amicode_Weather/form/element/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Ico</label>
+                <dataScope>weather_icon</dataScope>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="current_date" sortOrder="10" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Date of measurement</label>
+                <visible>true</visible>
+                <dataScope>current_date</dataScope>
+            </settings>
+        </field>
+        <field name="temp" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Temperature [°C]</label>
+                <dataScope>temp</dataScope>
+            </settings>
+        </field>
+        <field name="temp_min" sortOrder="30" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                    <item name="readonly" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Temperature Min [°C]</label>
+                <dataScope>temp_min</dataScope>
+            </settings>
+        </field>
+        <field name="temp_max" sortOrder="40" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Temperature Min [°C]</label>
+                <dataScope>temp_max</dataScope>
+            </settings>
+        </field>
+        <field name="weather_main" sortOrder="50" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Weather Main</label>
+                <dataScope>weather_main</dataScope>
+            </settings>
+        </field>
+        <field name="weather_description" sortOrder="60" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Weather Description</label>
+                <dataScope>weather_description</dataScope>
+            </settings>
+        </field>
+        <field name="humidity" sortOrder="70" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Humidity [%]</label>
+                <dataScope>humidity</dataScope>
+            </settings>
+        </field>
+        <field name="pressure" sortOrder="80" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Pressure [hPa]</label>
+                <dataScope>pressure</dataScope>
+            </settings>
+        </field>
+        <field name="visibility" sortOrder="90" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Visibility [m]</label>
+                <dataScope>visibility</dataScope>
+            </settings>
+        </field>
+        <field name="wind_speed" sortOrder="100" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Wind Speed [km/h]</label>
+                <dataScope>wind_speed</dataScope>
+            </settings>
+        </field>
+        <field name="wind_deg" sortOrder="110" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Wind Deg</label>
+                <dataScope>wind_deg</dataScope>
+            </settings>
+        </field>
+        <field name="sunrise" sortOrder="120" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Sunrise</label>
+                <dataScope>sunrise</dataScope>
+            </settings>
+        </field>
+        <field name="sunset" sortOrder="130" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">weather</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Sunset</label>
+                <dataScope>sunset</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

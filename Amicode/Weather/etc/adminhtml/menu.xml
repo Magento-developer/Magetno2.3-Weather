@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © 2019 AmiCode. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Amicode_Weather::amicode_all"
+             title="Amicode"
+             module="Amicode_Weather"
+             sortOrder="80"
+             resource="Amicode_Weather::amicode_all"/>
+        <add id="Amicode_Weather::main"
+             title="Weather"
+             translate="Weather"
+             module="Amicode_Weather"
+             parent="Amicode_Weather::amicode_all"
+             sortOrder="150"
+             resource="Amicode_Weather::main"/>
+        <add id="Amicode_Weather::amicode_config"
+             title="Configuration Weather Feed"
+             module="Amicode_Weather"
+             sortOrder="10"
+             action="adminhtml/system_config/edit/section/amicodeweather"
+             parent="Amicode_Weather::main"
+             resource="Amicode_Weather::amicode_config"/>
+        <add id="Amicode_Weather::weather"
+             title="Wheather Feed"
+             module="Amicode_Weather"
+             translate="Weather Feed"
+             sortOrder="20"
+             action="amicodeweather/weather"
+             parent="Amicode_Weather::main"
+             resource="Amicode_Weather::weather"/>
+    </menu>
+</config>

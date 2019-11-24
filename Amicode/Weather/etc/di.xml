@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © 2019 AmiCode. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Amicode\Weather\Api\Data\WeatherInterface" type="Amicode\Weather\Model\Weather" />
+    <preference for="Amicode\Weather\Api\WeatherRepositoryInterface" type="Amicode\Weather\Model\WeatherRepository" />
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Amicode\Weather\Api\Data\WeatherInterface" xsi:type="string">Amicode\Weather\Api\WeatherRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="amicode_weather_listing_data_source" xsi:type="string">Amicode\Weather\Model\ResourceModel\Weather\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Amicode\Weather\Model\ResourceModel\Weather\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">amicode_weather</argument>
+            <argument name="resourceModel" xsi:type="string">Amicode\Weather\Model\ResourceModel\Weather</argument>
+        </arguments>
+    </virtualType>
+    <type name="Amicode\Weather\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Amicode\Weather\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">AmicodeLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Amicode\Weather\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
+
+
+
+
+

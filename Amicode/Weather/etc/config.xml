@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © 2019 AmiCode. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amicodeweather>
+            <module>
+                <type>1</type>
+            </module>
+            <general>
+                <enabled>0</enabled>
+                <api_key>86973ce97d89b5906608622908596edc</api_key>
+                <city_name>Lublin</city_name>
+            </general>
+        </amicodeweather>
+    </default>
+</config>
